@@ -134,15 +134,50 @@ function deleteEmployeeById(empId) {
     }
 }
 
+
+class Employee {
+    findEmployeeById(id) {
+        let employ = employees.find((emp1) => emp1.id === id);
+        console.log(employ);
+    }
+    //find employee by a key-value
+    findEmployee(key, value) {
+        let employ = employees.find(emp2 => emp2[key] === value)
+        console.log(employ);
+    }
+    //Update employee by ID​
+    updateEmployeeById(empId, key, value) {
+        let index = employees.findIndex(function (employee) {
+            if (employee.id === empId)
+                return true;
+        });
+        if (key != "id") {
+            if (index !== -1) {
+                employees[index][key] = value
+                console.log("Updated Value: ", employees[index]);
+            }
+        }
+        else
+            console.log("ID cannot be changed");
+    }
+    //delete employee by ID​
+    deleteEmployeeById(empId) {
+        if (employees.findIndex(emp3 => emp3.id === empId)) {
+            let removed = employees.splice(empId, 1);
+            console.log("Employee Removed", removed);
+            console.log("Remaining Employee", employees);
+        }
+    }
+}
 //find employee by Id
-findEmployeeById("7");
+const empl1 = new Employee(findEmployeeById("7"));
 
 //find employee by a key-value
-findEmployee("name", "Harshitha D");
+const empl2 = new Employee(findEmployee("name", "Harshitha D"));
 
 //Update employee by ID​
-updateEmployeeById("5", "name", "Jimin");
-updateEmployeeById("5", "id", "3");
+const empl3 = new Employee(updateEmployeeById("5", "name", "Jimin"));
+const empl4 = new Employee(updateEmployeeById("5", "id", "3"));
 
 //delete employee by ID​
-deleteEmployeeById("8");
+const empl5 = new Employee(deleteEmployeeById("8"));
